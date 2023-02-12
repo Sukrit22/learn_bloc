@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:learn_bloc/app_route.dart';
 import 'package:learn_bloc/bloc/counter_a_bloc/bloc/counter_a_bloc.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,19 +18,25 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, AppRoute.another),
+            icon: Icon(Icons.navigate_next),
+          )
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'CounterA:',
             ),
             BlocBuilder<CounterABloc, CounterAState>(
               builder: (context, state) {
                 return Text(
                   '${state.count}',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 );
               },
             ),
